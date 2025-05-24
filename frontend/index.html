@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - Tienda de Componentes</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="card p-4 col-md-4">
+            <div class="text-center mb-4">
+                <img src=" https://cdn.shopify.com/s/files/1/0626/9314/6787/files/electronics_logo_e281c840-3ba2-47ac-8e1b-331ab78d5b40.png?v=1697188531" alt="Logo Tienda" style="width: 100px; height: auto;">
+            </div>
+            <h3 class="text-center">Iniciar Sesión</h3>
+            <form id="formLogin" method="POST" action="http://localhost:8888/proyecto_a.de_internet/backend/login.php">
+                <div>
+                <input type="text" name="usuario" id="username" required placeholder="Correo Electronico"/>
+                <input type="password" name="contrasena" id="password" required placeholder="Contraseña"/>
+                <button type="submit">Iniciar sesión</button>
+                <div class="d-grid">
+                <span>¿Nuevo en la tienda? <a href="./signup.html">Registrate</a></span>     
+            </form>              
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>

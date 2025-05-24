@@ -1,0 +1,92 @@
+/* Reset de márgenes y paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* General */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7fa;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #343a40;
+    padding: 10px 20px;
+}
+
+.navbar .navbar-brand {
+    font-weight: bold;
+    font-size: 1.5em;
+    color: #ffffff;
+}
+
+.navbar .navbar-brand:hover {
+    color: #ffc107;
+}
+
+.navbar .btn-outline-light {
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+.navbar .btn-outline-light:hover {
+    background-color: #ffc107;
+    border-color: #ffc107;
+    color: #343a40;
+}
+
+/* Contenedor Principal */
+.container-fluid {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto;
+}
+
+/* Título */
+.container-fluid h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Inputs */
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+/* Botón */
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
