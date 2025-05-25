@@ -1,5 +1,5 @@
-CREATE DATABASE IF NOT EXISTS APLICACIONESPROYECTO;
-USE APLICACIONESPROYECTO;
+CREATE DATABASE IF NOT EXISTS aplicacionesproyecto;
+USE aplicacionesproyecto;
  
 CREATE TABLE IF NOT EXISTS administrador(
 	adm_id INT NOT NULL AUTO_INCREMENT,
@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS usuario(
 	usu_id INT NOT NULL AUTO_INCREMENT,
     usu_nombre VARCHAR(50) NOT NULL,
     usu_correo VARCHAR(50) NOT NULL,
-    usu_contrasena VARCHAR(50) NOT NULL,
+    usu_contrasena VARCHAR(250) NOT NULL,
     PRIMARY KEY(usu_id),
     INDEX idx_usuario_nombre(usu_nombre)
 );

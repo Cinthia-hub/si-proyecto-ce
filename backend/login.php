@@ -13,9 +13,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $contrasena = $_POST['contrasena'];   
 
     // Configuración de la base de datos
-    $servername = "localhost:8889"; 
+    $servername = "127.0.0.1"; 
     $username = "root"; 
-    $password = "root"; 
+    $password = "camila"; 
     $dbname = "aplicacionesproyecto"; 
 
     // Conexión a la base de datos

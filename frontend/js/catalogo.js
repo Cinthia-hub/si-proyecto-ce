@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const BASE_URL = 'http://localhost:8888/proyecto_a.de_internet/backend';
+    const BASE_URL = 'http://localhost:8888/si-proyecto-ce/backend';
     let productos = []; // Para almacenar los productos cargados desde el backend
     const usuarioId = 1; // Suponiendo que el usuario está autenticado y su ID es 1 (esto debería cambiar dependiendo de tu sistema de autenticación)
 

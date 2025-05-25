@@ -15,24 +15,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $contrasena = $_POST['password'];
     $confirmPassword = $_POST['confirmPassword'];
 
-    
+    if (empty($nombre) || empty($correo) || empty($contrasena) || empty($confirmPassword)) {
+        echo json_encode(["error" => "Todos los campos son obligatorios"]);
+        exit();
+    }
+
     if ($contrasena != $confirmPassword) {
         echo json_encode(["error" => "Las contraseñas no coinciden"]);
         exit();
     }
 
-    
-    $sql = "INSERT INTO usuario (usu_nombre, usu_correo, usu_contrasena) VALUES (:nombre, :correo, :contrasena)";
+    $sql = "INSERT INTO usuario (usu_nombre, usu_correo, usu_contrasena) 
+            VALUES (:nombre, :correo, :contrasena)";
     $stmt = $conn->prepare($sql);
 
+    $hashedPassword = password_hash($contrasena, PASSWORD_DEFAULT);
     $stmt->bindParam(':nombre', $nombre);
     $stmt->bindParam(':correo', $correo);
-    $stmt->bindParam(':contrasena', password_hash($contrasena, PASSWORD_DEFAULT));
+    $stmt->bindParam(':contrasena', $hashedPassword);
 
     if ($stmt->execute()) {
-        echo json_encode(["success" => "Usuario registrado exitosamente"]);
-        header("Location: ../frontend/catalogo.html");  
-        exit();
+        header("Location: ../frontend/catalogo.html");
+        exit(); // asegúrate de salir después de redirigir
     } else {
         echo json_encode(["error" => "Error al registrar usuario"]);
     }    

@@ -1,5 +1,5 @@
 // URL base para el backend (ajusta si es necesario)
-const BASE_URL = 'http://localhost:8888/proyecto_a.de_internet/backend';
+const BASE_URL = 'http://localhost:8888/si-proyecto-ce/backend';
 
 
 // Función para manejar el formulario de agregar productos

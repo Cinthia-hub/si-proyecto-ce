@@ -1,5 +1,5 @@
 // URL base para el backend (ajusta si es necesario)
-const BASE_URL = 'http://localhost:8888/proyecto_a.de_internet/backend';
+const BASE_URL = 'http://localhost:8888/si-proyecto-ce/backend';
 
 // Función para iniciar sesión
 function loginUsuario() {
@@ -12,7 +12,7 @@ function loginUsuario() {
         return;
     }
 
-    fetch('http://localhost:8888/proyecto_a.de_internet/backend/login.php', {
+    fetch('http://localhost:8888/si-proyecto-ce/backend/login.php', {
         method: "POST",
         body: new URLSearchParams({
             'usuario': usuario,
@@ -26,7 +26,7 @@ function loginUsuario() {
     .then(data => {
         if (data.success) {
             alert(data.message); // Muestra el mensaje de éxito
-            window.location.href = "dashboard.html"; // Redirige a la página de dashboard
+            window.location.href = "../dashboard.html"; // Redirige a la página de dashboard
         } else {
             alert(data.message); // Muestra el mensaje de error
         }
