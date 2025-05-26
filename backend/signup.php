@@ -29,10 +29,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             VALUES (:nombre, :correo, :contrasena)";
     $stmt = $conn->prepare($sql);
 
-    $hashedPassword = password_hash($contrasena, PASSWORD_DEFAULT);
-    $stmt->bindParam(':nombre', $nombre);
-    $stmt->bindParam(':correo', $correo);
-    $stmt->bindParam(':contrasena', $hashedPassword);
+    $stmt->bindValue(':nombre', $nombre);
+    $stmt->bindValue(':correo', $correo);
+    $stmt->bindValue(':contrasena', $contrasena);
 
     if ($stmt->execute()) {
         header("Location: ../frontend/catalogo.html");

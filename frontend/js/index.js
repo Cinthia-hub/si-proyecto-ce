@@ -1,5 +1,20 @@
 // URL base para el backend (ajusta si es necesario)
-const BASE_URL = 'http://localhost:8888/si-proyecto-ce/backend';
+const BASE_URL = 'http://localhost:8888/si-proyecto-mio/backend';
+
+document.addEventListener("DOMContentLoaded", () => {
+    fetch('http://localhost:8888/si-proyecto-mio/backend/database.php')
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                console.log("✅ Base de datos cargada:", data.message);
+            } else {
+                console.error("⚠️ Error al cargar la base de datos:", data.message);
+            }
+        })
+        .catch(error => {
+            console.error("Error en la solicitud al backend:", error);
+        });
+});
 
 // Función para iniciar sesión
 function loginUsuario() {
@@ -12,7 +27,7 @@ function loginUsuario() {
         return;
     }
 
-    fetch('http://localhost:8888/si-proyecto-ce/backend/login.php', {
+    fetch('http://localhost:8888/si-proyecto-mio/backend/login.php', {
         method: "POST",
         body: new URLSearchParams({
             'usuario': usuario,

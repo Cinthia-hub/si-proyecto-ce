@@ -79,3 +79,9 @@ CREATE TABLE IF NOT EXISTS inventario(
 		ON DELETE RESTRICT
 		ON UPDATE RESTRICT
 );
+
+-- Insertar administradores con contraseñas
+INSERT INTO administrador (adm_nombre, adm_correo, adm_contrasena) VALUES
+('Cinthia Camila', 'cc.bravomarmolejo@ugto.mx', 'camila'),
+('Andres Torres', 'a.torresceja@ugto.mx', 'andres'),
+('Carmen Mar', 'cm.marmolejoflores@ugto.mx', 'carmen');
