@@ -2,9 +2,9 @@ CREATE DATABASE IF NOT EXISTS aplicacionesproyecto;
 USE aplicacionesproyecto;
  
 CREATE TABLE IF NOT EXISTS administrador(
-	adm_id INT NOT NULL AUTO_INCREMENT,
+    adm_id INT NOT NULL AUTO_INCREMENT,
     adm_nombre VARCHAR(50) NOT NULL,
-    adm_correo VARCHAR(50) NOT NULL,
+    adm_correo VARCHAR(50) NOT NULL UNIQUE,
     adm_contrasena VARCHAR(50) NOT NULL,
     PRIMARY KEY (adm_id),
     INDEX idx_admin_nombre(adm_nombre)
@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS administrador(
 CREATE TABLE IF NOT EXISTS usuario(
 	usu_id INT NOT NULL AUTO_INCREMENT,
     usu_nombre VARCHAR(50) NOT NULL,
-    usu_correo VARCHAR(50) NOT NULL,
+    usu_correo VARCHAR(50) NOT NULL UNIQUE,
     usu_contrasena VARCHAR(250) NOT NULL,
     PRIMARY KEY(usu_id),
     INDEX idx_usuario_nombre(usu_nombre)
@@ -81,7 +81,8 @@ CREATE TABLE IF NOT EXISTS inventario(
 );
 
 -- Insertar administradores con contraseñas
-INSERT INTO administrador (adm_nombre, adm_correo, adm_contrasena) VALUES
+INSERT IGNORE INTO administrador (adm_nombre, adm_correo, adm_contrasena) VALUES
 ('Cinthia Camila', 'cc.bravomarmolejo@ugto.mx', 'camila'),
 ('Andres Torres', 'a.torresceja@ugto.mx', 'andres'),
 ('Carmen Mar', 'cm.marmolejoflores@ugto.mx', 'carmen');
+
