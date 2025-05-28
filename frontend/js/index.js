@@ -1,53 +1,46 @@
-// URL base para el backend (ajusta si es necesario)
-const BASE_URL = 'http://localhost:8888/si-proyecto-mio/backend';
+document.getElementById("login-form").addEventListener("submit", async function (event) {
+    event.preventDefault(); // PREVIENE RECARGA
 
-document.addEventListener("DOMContentLoaded", () => {
-    fetch('http://localhost:8888/si-proyecto-mio/backend/database.php')
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                console.log("✅ Base de datos cargada:", data.message);
-            } else {
-                console.error("⚠️ Error al cargar la base de datos:", data.message);
-            }
-        })
-        .catch(error => {
-            console.error("Error en la solicitud al backend:", error);
-        });
-});
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
 
-// Función para iniciar sesión
-function loginUsuario() {
-    const usuario = document.getElementById("usuario").value;
-    const contrasena = document.getElementById("contrasena").value;
+    const erroremail = document.getElementById("error-email");
+    const errorpassword = document.getElementById("error-password");
 
-    // Verificar si los campos están vacíos
-    if (!usuario || !contrasena) {
-        alert("Por favor, ingresa tu usuario y contraseña.");
-        return;
+    erroremail.textContent = "";
+    errorpassword.textContent = "";
+    try {
+    const response = await fetch("../backend/login.php", {
+        method: "POST",
+        headers: {
+        "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email, password })
+    });
+
+    const text = await response.text();
+    let data;
+    try {
+        data = JSON.parse(text);
+    } catch (e) {
+        console.error("No se pudo parsear JSON:", text);
+        throw new Error("Respuesta del servidor inválida.");
     }
 
-    fetch('http://localhost:8888/si-proyecto-mio/backend/login.php', {
-        method: "POST",
-        body: new URLSearchParams({
-            'usuario': usuario,
-            'contrasena': contrasena
-        }),
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        }
-    })
-    .then(response => response.json()) // Asegurarse de que la respuesta sea JSON
-    .then(data => {
-        if (data.success) {
-            alert(data.message); // Muestra el mensaje de éxito
-            window.location.href = "../dashboard.html"; // Redirige a la página de dashboard
-        } else {
-            alert(data.message); // Muestra el mensaje de error
-        }
-    })
-    .catch(error => {
-        console.error("Error en el inicio de sesión:", error);
-        alert("Error en el inicio de sesión. Intenta nuevamente.");
-    });
-}
+    if (data.error === "correo") {
+        erroremail.textContent = "El correo no está registrado.";
+    } else if (data.error === "contrasena") {
+        errorpassword.textContent = "La contraseña es incorrecta.";
+    } else if (data.success === "usuario") {
+        localStorage.setItem("nombre", data.nombre);
+        localStorage.setItem("correo", data.correo)
+        window.location.href = "../frontend/catalogo.html";
+    } else if (data.success === "administrador") {
+        localStorage.setItem("nombre", data.nombre);
+        localStorage.setItem("correo", data.correo)
+        window.location.href = "../frontend/admin_dashboard.html";
+    }
+    } catch (err) {
+        console.error("Error al iniciar sesión:", err);
+    }
+});

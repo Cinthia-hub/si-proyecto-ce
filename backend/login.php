@@ -1,76 +1,51 @@
 <?php
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
-header('Content-Type: application/json'); 
+    header('Content-Type: application/json');
+    require_once '../backend/database.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (!isset($_POST['usuario']) || !isset($_POST['contrasena'])) {
-        echo json_encode(['success' => false, 'message' => 'Faltan datos de usuario o contraseña']);
-        exit();
-    }
+    $input = json_decode(file_get_contents("php://input"), true);
+    $email = $input['email'] ?? '';
+    $password = $input['password'] ?? '';
 
-    $usuario = $_POST['usuario']; 
-    $contrasena = $_POST['contrasena'];   
+    $db = new Database();
+    $conn = $db->getConnection();
 
-    // Configuración de la base de datos
-    $servername = "127.0.0.1"; 
-    $username = "root"; 
-    $password = "camila"; 
-    $dbname = "aplicacionesproyecto"; 
+    // Buscar en la tabla administrador
+    $stmt = $conn->prepare("SELECT * FROM administrador WHERE adm_correo = :email");
+    $stmt->bindParam(':email', $email);
+    $stmt->execute();
+    $admin = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // Conexión a la base de datos
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    if ($conn->connect_error) {
-        die("Conexión fallida: " . $conn->connect_error);
-    }
-
-    // Consultar si el usuario es administrador
-    $queryAdmin = "SELECT * FROM administrador WHERE adm_correo = ?";
-    $stmtAdmin = $conn->prepare($queryAdmin);
-    $stmtAdmin->bind_param("s", $usuario);  
-    $stmtAdmin->execute();
-    $resultAdmin = $stmtAdmin->get_result();
-
-    if ($resultAdmin->num_rows > 0) {
-        $admin = $resultAdmin->fetch_assoc();
-        if ($admin['adm_contrasena'] === $contrasena) {
-            echo json_encode(['success' => true, 'message' => 'Inicio de sesión exitoso']);
-            header("Location: ../frontend/inventario.html");  
-            exit();
+    if ($admin) {
+        if ($admin['adm_contrasena'] === $password) {
+            echo json_encode([
+                "success" => "administrador",
+                "nombre" => $admin['adm_nombre'],
+                "correo" => $admin['adm_correo']
+            ]);
         } else {
-            echo json_encode(['success' => false, 'message' => 'Contraseña incorrecta para administrador']);
+            echo json_encode(["error" => "contrasena"]);
         }
-    } else {
-        // Consultar si el usuario es un cliente
-        $queryUser = "SELECT * FROM usuario WHERE usu_correo = ?";
-        $stmtUser = $conn->prepare($queryUser);
-        $stmtUser->bind_param("s", $usuario);  
-        $stmtUser->execute();
-        $resultUser = $stmtUser->get_result();
-
-        if ($resultUser->num_rows > 0) {
-            $user = $resultUser->fetch_assoc();
-            if ($user['usu_contrasena'] === $contrasena) {
-                // Guardar el ID de usuario en la sesión
-                session_start();
-                $_SESSION['usuario_id'] = $user['usu_id'];  // Guarda el ID del usuario
-
-                echo json_encode(['success' => true, 'message' => 'Inicio de sesión exitoso']);
-                header("Location: ../frontend/catalogo.html");  
-                exit();
-            } else {
-                echo json_encode(['success' => false, 'message' => 'Contraseña incorrecta para usuario']);
-            }
-        } else {
-            echo json_encode(['success' => false, 'message' => 'Usuario no encontrado']);
-        }
+        exit;
     }
 
-    $stmtAdmin->close();
-    $stmtUser->close();
-    $conn->close();
-} else {
-    http_response_code(405);  
-    echo json_encode(['success' => false, 'message' => 'Método no permitido']);
-}
+    // Buscar en la tabla usuario
+    $stmt = $conn->prepare("SELECT * FROM usuario WHERE usu_correo = :email");
+    $stmt->bindParam(':email', $email);
+    $stmt->execute();
+    $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($usuario) {
+        if ($usuario['usu_contrasena'] === $password) {
+            echo json_encode([
+                "success" => "usuario",
+                "nombre" => $usuario['usu_nombre'],
+                "correo" => $usuario['usu_correo']
+            ]);
+        } else {
+            echo json_encode(["error" => "contrasena"]);
+        }
+        exit;
+    }
+
+    echo json_encode(["error" => "correo"]);
+?>
