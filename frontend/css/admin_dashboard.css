@@ -1,0 +1,9 @@
+body { padding: 20px; }
+    .user-dropdown {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+    .dropdown-menu.show {
+      display: block;
+    }
