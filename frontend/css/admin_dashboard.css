@@ -20,3 +20,9 @@ body{
 .return button a{
   text-decoration: none;
 }
+
+.mismalinea{
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}

@@ -15,7 +15,10 @@ function irAlInventario() {
   window.location.href = "inventario.html"; // Redirige al inventario
 }
 
-// Función para cerrar sesión
+// Función para ir al panel de control
+function irAlControlPanel() {
+  window.location.href = "control_panel.html"; // Redirige al inventario
+}
 
 // Cerrar sesión
 function cerrarSesion() {
