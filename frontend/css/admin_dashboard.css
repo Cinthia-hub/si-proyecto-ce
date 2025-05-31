@@ -1,9 +1,22 @@
-body { padding: 20px; }
-    .user-dropdown {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-    }
-    .dropdown-menu.show {
-      display: block;
-    }
+body{ 
+  padding: 20px; 
+}
+
+.user-dropdown{
+  position: absolute;
+  z-index: 1;
+  top: 15px;
+  right: 20px;
+}
+
+.dropdown-menu.show{
+  display: block;
+}
+
+.return{
+  z-index: 1;
+}
+
+.return button a{
+  text-decoration: none;
+}

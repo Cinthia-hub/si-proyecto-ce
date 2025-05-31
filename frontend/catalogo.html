@@ -5,13 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> 🖥️ Tienda de Componentes - Catálogo</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/admin_dashboard.css">
     <link rel="stylesheet" href="./css/inventario.css">
 </head>
 <body>
+    <!-- Dropdown -->
+    <div class="dropdown user-dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+        <span id="userName">Usuario</span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+        <li><span class="dropdown-item-text" id="userEmail">correo@example.com</span></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><button class="dropdown-item" onclick="cerrarSesion()">Cerrar sesión</button></li>
+        </ul>
+    </div>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Tienda de Componentes</a>
+        <a class="navbar-brand" href="">Tienda de Componentes</a>
         </div>
     </nav>
     <!-- Main Content -->

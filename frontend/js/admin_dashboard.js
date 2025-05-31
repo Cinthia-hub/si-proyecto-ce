@@ -7,7 +7,7 @@ document.getElementById("adminGreeting").textContent = nombre;
 
 // Función para ir a registrar nuevo admin
 function registrarAdmin() {
-  window.location.href = "registrar_admin.html"; // Debes crear esta página
+  window.location.href = "admin_signup.html"; // Debes crear esta página
 }
 
 // Función para ir al inventario
@@ -16,12 +16,19 @@ function irAlInventario() {
 }
 
 // Función para cerrar sesión
+
+// Cerrar sesión
 function cerrarSesion() {
-  Swal.fire({
-      icon: 'success',
-      title: 'Cerrando sesión ',
-      text: 'Cerró sesión exitosamente',
-  });
-  localStorage.clear(); 
-  window.location.href = "index.html"; // Redirige al login
+    Swal.fire({
+    title: "¿Cerrar sesión?",
+    showCancelButton: true,
+    confirmButtonText: "Sí, salir",
+    cancelButtonText: "Cancelar",
+    icon: "warning"
+    }).then((result) => {
+    if (result.isConfirmed) {
+        localStorage.clear();
+        window.location.href = "index.html";
+    }
+    });
 }

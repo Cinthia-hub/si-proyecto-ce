@@ -42,7 +42,7 @@
     }
 
     // Inserta nuevo usuario
-    $stmt = $conn->prepare("INSERT INTO usuario (usu_nombre, usu_correo, usu_contrasena) VALUES (:nombre, :email, :password)");
+    $stmt = $conn->prepare("INSERT INTO administrador (adm_nombre, adm_correo, adm_contrasena) VALUES (:nombre, :email, :password)");
     $stmt->bindParam(':nombre', $nombre);
     $stmt->bindParam(':email', $email);
     $stmt->bindParam(':password', $password);
@@ -50,6 +50,6 @@
     if ($stmt->execute()) {
         echo json_encode(["success" => true]);
     } else {
-        echo json_encode(["success" => false, "error" => "No se pudo registrar el usuario"]);
+        echo json_encode(["success" => false, "error" => "No se pudo registrar el administrador"]);
     }
 ?>
