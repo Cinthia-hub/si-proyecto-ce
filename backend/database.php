@@ -5,7 +5,7 @@
     // Configura tus datos de conexión
     $host = '127.0.0.1';
     $username = 'root';
-    $password = 'camila';
+    $password = 'root';
     $sqlFile = __DIR__ . '/../sql/sintaxis.sql';
 
     // Crear base de datos y tablas si no existen
@@ -30,7 +30,7 @@
         private $host = '127.0.0.1';
         private $db_name = 'aplicacionesproyecto';
         private $username = 'root';
-        private $password = 'camila';
+        private $password = 'root';
         private $conn;
 
         public function getConnection() {
