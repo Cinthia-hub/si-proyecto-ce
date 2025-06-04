@@ -35,12 +35,6 @@ error_log("Acción: " . $action);
 error_log("Producto ID: " . $productoId);
 error_log("Cantidad: " . $cantidad);
 
-// Validar si el usuario está autenticado y si los parámetros son correctos
-if (!$usuarioId || !$productoId || !$cantidad) {
-    echo json_encode(['success' => false, 'message' => 'Faltan parámetros.']);
-    exit;
-}
-
 // Función para agregar producto al carrito
 function agregarProducto($usuarioId, $productoId, $cantidad) {
     global $conn;
@@ -110,24 +104,28 @@ function actualizarCantidad($usuarioId, $productoId, $cantidad) {
 
 // Ejecutar la acción según la solicitud
 if ($action == 'agregar') {
-    if ($productoId && $cantidad) {
+    if ($usuarioId && $productoId && $cantidad) {
         $success = agregarProducto($usuarioId, $productoId, $cantidad);
         echo json_encode(['success' => $success]);
     } else {
         echo json_encode(['success' => false, 'message' => 'Faltan parámetros.']);
     }
 } elseif ($action == 'eliminar') {
-    if ($productoId) {
+    if ($usuarioId && $productoId) {
         $success = eliminarProducto($usuarioId, $productoId);
         echo json_encode(['success' => $success]);
     } else {
         echo json_encode(['success' => false, 'message' => 'Faltan parámetros.']);
     }
 } elseif ($action == 'vaciar') {
-    $success = vaciarCarrito($usuarioId);
-    echo json_encode(['success' => $success]);
+    if ($usuarioId) {
+        $success = vaciarCarrito($usuarioId);
+        echo json_encode(['success' => $success]);
+    } else {
+        echo json_encode(['success' => false, 'message' => 'Faltan parámetros.']);
+    }
 } elseif ($action == 'actualizar') {
-    if ($productoId && $cantidad) {
+    if ($usuarioId && $productoId && $cantidad) {
         $success = actualizarCantidad($usuarioId, $productoId, $cantidad);
         echo json_encode(['success' => $success]);
     } else {
