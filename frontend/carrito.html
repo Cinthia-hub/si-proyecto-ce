@@ -2,65 +2,35 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrito de Compras - 🖥️ Tienda de Componentes</title>
+    <title>Carrito de Compras</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/admin_dashboard.css">
-    <link rel="stylesheet" href="./css/inventario.css">
 </head>
 <body>
-    <div class="position-absolute top-0 start-0 m-3 return">
-        <button class="btn btn-outline-primary" onclick="history.back()"><a href="./catalogo.html">◀️</a></button>
-    </div>
-    <!-- Dropdown -->
-    <div class="dropdown user-dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-        <span id="userName">Usuario</span>
-        </button>
-        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-        <li><span class="dropdown-item-text" id="userEmail">correo@example.com</span></li>
-        <li><hr class="dropdown-divider"></li>
-        <li><button class="dropdown-item" onclick="cerrarSesion()">Cerrar sesión</button></li>
-        </ul>
-    </div>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-        <a class="navbar-brand" href="">Tienda de Componentes</a>
-        </div>
-    </nav>
-    <!-- Main Content -->
     <div class="container mt-4">
-        <h3 class="text-center">Carrito de Compras</h3>
-
-        <table class="table table-striped">
-            <thead class="table-dark">
+        <h2>Carrito de Compras</h2>
+        <div>
+            <span id="userName"></span> | <span id="userEmail"></span>
+        </div>
+        <table class="table mt-3">
+            <thead>
                 <tr>
                     <th>Producto</th>
                     <th>Cantidad</th>
                     <th>Precio</th>
-                    <th>Total</th>
+                    <th>Subtotal</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody id="carritoBody">
-                <!-- Los productos del carrito se generarán aquí -->
+                <!-- Aquí se cargan los productos del carrito -->
             </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="3" class="text-end fw-bold">Total:</td>
-                    <td id="carritoTotal" class="fw-bold">$0.00</td>
-                </tr>
-            </tfoot>
         </table>
-
-        <div class="d-flex justify-content-end">
-            <button class="btn btn-secondary me-2" onclick="vaciarCarrito()">Vaciar Carrito</button>
-            <button class="btn btn-success" onclick="finalizarCompra()">Finalizar Compra</button>
+        <div class="mb-3">
+            <strong>Total: <span id="carritoTotal">$0.00</span></strong>
         </div>
+        <button class="btn btn-danger" onclick="vaciarCarrito()">Vaciar Carrito</button>
+        <button class="btn btn-success" onclick="finalizarCompra()">Finalizar Compra</button>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="./js/carrito.js"></script>
+    <script src="js/carrito.js"></script>
 </body>
 </html>
