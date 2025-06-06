@@ -1,93 +1,105 @@
-/* Reset de márgenes y paddings */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+html, body {
+    height: 100%;
+    min-height: 100%;
 }
-
-/* General */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f7fa;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background: linear-gradient(135deg, #f3f6fd 0%, #e9e4f0 100%);
     min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
 }
-
-/* Navbar */
-.navbar {
-    background-color: #343a40;
-    padding: 10px 20px;
+main.flex-fill {
+    flex: 1 0 auto;
 }
-
-.navbar .navbar-brand {
-    font-weight: bold;
-    font-size: 1.5em;
-    color: #ffffff;
+.banner-section {
+    background: linear-gradient(90deg, #7f9cf5 0%, #a78bfa 100%);
+    border-radius: 0 0 2rem 2rem;
+    color: #fff;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 24px 0 rgba(127, 156, 245, 0.10);
+    width: 100vw;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    position: relative;
+    padding-left: 0;
+    padding-right: 0;
 }
-
-.navbar .navbar-brand:hover {
-    color: #ffc107;
+.banner-img {
+    max-width: 80px;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.08));
 }
-
-.navbar .btn-outline-light {
-    border-color: #ffffff;
-    color: #ffffff;
+.text-banner-title {
+    color: #fff;
+    text-shadow: 0 2px 8px rgba(127, 156, 245, 0.15);
+    font-size: 2.1rem;
 }
-
-.navbar .btn-outline-light:hover {
-    background-color: #ffc107;
-    border-color: #ffc107;
-    color: #343a40;
+.text-banner-desc {
+    color: #f3f6fd;
+    font-size: 1.15rem;
+    font-weight: 500;
+    text-shadow: 0 1px 4px rgba(127, 156, 245, 0.10);
 }
-
-/* Contenedor Principal */
-.container-fluid {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 30px;
-    width: 100%;
-    max-width: 1200px;
-    margin: 20px auto;
+.card {
+    border-radius: 1.5rem;
+    box-shadow: 0 8px 32px 0 rgba(127, 156, 245, 0.10);
+    background: rgba(255,255,255,0.97);
 }
-
-/* Título */
-.container-fluid h2 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 20px;
+.text-card-title {
+    color: #7f9cf5;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    font-size: 1.35rem;
+    text-shadow: 0 2px 8px rgba(127, 156, 245, 0.10);
 }
-
-/* Inputs */
-input[type="email"],input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
-}
-
-/* Botón */
-button {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    background-color: #3498db;
-    color: white;
+.btn-primary {
+    background: linear-gradient(90deg, #7f9cf5 0%, #a78bfa 100%);
     border: none;
-    border-radius: 5px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.1rem;
+    border-radius: 0.7rem;
+    transition: all 0.2s;
 }
-
-button:hover {
-    background-color: #2980b9;
+.btn-primary:hover {
+    background: linear-gradient(90deg, #a78bfa 0%, #7f9cf5 100%);
+    color: #fff;
 }
-
+.link-accent {
+    color: #7f9cf5;
+    font-weight: 600;
+    text-decoration: underline;
+}
+.link-accent:hover {
+    color: #a78bfa;
+}
+.footer-section {
+    flex-shrink: 0;
+    border-radius: 0;
+    background: linear-gradient(90deg, #7f9cf5 0%, #a78bfa 100%);
+    color: #fff;
+    box-shadow: 0 -4px 24px 0 rgba(127, 156, 245, 0.10);
+    width: 100vw;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    position: relative;
+}
+@media (max-width: 768px) {
+    .banner-section {
+        border-radius: 0 0 1rem 1rem;
+        padding: 1rem 0.5rem;
+    }
+    .footer-section {
+        border-radius: 0;
+    }
+    .text-banner-title {
+        font-size: 1.3rem;
+    }
+    .text-banner-desc {
+        font-size: 1rem;
+    }
+}

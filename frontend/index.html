@@ -4,32 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio de Sesión - Tienda de Componentes</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap 5 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="./css/index.css">
 </head>
-<body>
-    <div class="container d-flex justify-content-center align-items-center vh-100">
-        <div class="card p-4 col-md-4">
-            <div class="text-center mb-4">
-                <img src=" https://cdn.shopify.com/s/files/1/0626/9314/6787/files/electronics_logo_e281c840-3ba2-47ac-8e1b-331ab78d5b40.png?v=1697188531" alt="Logo Tienda" style="width: 100px; height: auto;">
+<body class="bg-light d-flex flex-column min-vh-100" style="font-family: 'Inter', sans-serif;">
+    <!-- Banner/Header -->
+    <section class="banner-section py-4 mb-4 w-100">
+        <div class="container-fluid px-4">
+            <div class="row align-items-center g-3">
+                <div class="col-md-2 text-center">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1041/1041916.png" alt="Bienvenido" class="img-fluid banner-img">
+                </div>
+                <div class="col-md-10">
+                    <h2 class="fw-bold mb-1 text-banner-title">Bienvenido a la Tienda de Componentes</h2>
+                    <p class="lead mb-0 text-banner-desc">Inicia sesión para acceder a tu carrito y descubrir los mejores productos electrónicos.</p>
+                </div>
             </div>
-            <h3 class="text-center">Iniciar Sesión</h3>
-            <form id="login-form">
-                <div>
+        </div>
+    </section>
+    <!-- Login Card -->
+    <main class="flex-fill">
+        <div class="container d-flex justify-content-center align-items-center min-vh-70">
+            <div class="card shadow-lg border-0 rounded-4 p-4" style="max-width: 400px; width: 100%;">
+                <div class="text-center mb-4">
+                    <img src="https://cdn.shopify.com/s/files/1/0626/9314/6787/files/electronics_logo_e281c840-3ba2-47ac-8e1b-331ab78d5b40.png?v=1697188531" alt="Logo Tienda" style="width: 80px; height: auto;">
+                </div>
+                <h3 class="text-center mb-3 text-card-title">Iniciar Sesión</h3>
+                <form id="login-form" autocomplete="off">
                     <div class="mb-3">
-                        <input type="email" class="form-control" name="email" id="email" required placeholder="Correo Electronico"/>
+                        <input type="email" class="form-control form-control-lg" name="email" id="email" required placeholder="Correo electrónico"/>
                         <div id="error-email" class="error text-danger mt-1"></div>
                     </div>
                     <div class="mb-3">
-                        <input type="password" class="form-control" name="password" id="password" required placeholder="Contraseña"/>
+                        <input type="password" class="form-control form-control-lg" name="password" id="password" required placeholder="Contraseña"/>
                         <div id="error-password" class="error text-danger mt-1"></div>
                     </div>
-                <button type="submit">Iniciar sesión</button>
-                <div class="d-grid">
-                <span>¿Nuevo en la tienda? <a href="./signup.html">Registrate</a></span>     
-            </form>              
+                    <button type="submit" class="btn btn-primary w-100 py-2 mb-2">
+                        <i class="bi bi-box-arrow-in-right"></i> Iniciar sesión
+                    </button>
+                    <div class="text-center mt-2">
+                        <span>¿Nuevo en la tienda? <a href="./signup.html" class="link-accent">Regístrate</a></span>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
+    </main>
+    <!-- Footer -->
+    <footer class="footer-section mt-auto py-4 bg-dark text-white text-center">
+        <div class="container">
+            <div class="mb-2">
+                <i class="bi bi-bag-check-fill fs-4"></i>
+            </div>
+            <div>
+                <small>&copy; 2025 Tienda Electrónica. Todos los derechos reservados.</small>
+            </div>
+        </div>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="./js/index.js"></script>
