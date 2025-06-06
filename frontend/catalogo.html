@@ -1,68 +1,131 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> 🖥️ Tienda de Componentes - Catálogo</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/admin_dashboard.css">
-    <link rel="stylesheet" href="./css/inventario.css">
-</head>
-<body>
-    <!-- Dropdown -->
-    <div class="dropdown user-dropdown">
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>🖥️ Tienda de Componentes - Catálogo</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="css/catalogo.css">
+    </head>
+    <body class="bg-light" id="mainBody" style="font-family: 'Inter', sans-serif;">
+        <!-- ...resto del HTML igual... -->
+<body class="bg-light" id="mainBody">
+    <!-- Dropdown User -->
+    <div class="dropdown user-dropdown position-absolute top-0 end-0 m-3">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-        <span id="userName">Usuario</span>
+            <i class="bi bi-person-circle"></i> <span id="userName">Usuario</span>
         </button>
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-        <li><span class="dropdown-item-text" id="userEmail">correo@example.com</span></li>
-        <li><hr class="dropdown-divider"></li>
-        <li><button class="dropdown-item" onclick="cerrarSesion()">Cerrar sesión</button></li>
+            <li><span class="dropdown-item-text" id="userEmail">correo@example.com</span></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><button class="dropdown-item" onclick="cerrarSesion()">Cerrar sesión</button></li>
         </ul>
     </div>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-        <a class="navbar-brand" href="">Tienda de Componentes</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="">
+                <i class="bi bi-bag-check-fill me-2"></i>
+                Tienda Electrónica
+            </a>
+            <button class="btn btn-outline-light ms-auto" id="darkModeToggle" title="Modo oscuro/claro">
+                <i class="bi bi-moon-stars-fill" id="darkModeIcon"></i>
+            </button>
         </div>
     </nav>
-    <!-- Main Content -->
-    <div class="container-fluid mt-4">
-        <div class="row">
-            <!-- Product Inventory Table -->
-            <div class="col-md-8">
-                <div class="text-center mb-4">
-                    <img src="https://cdn.shopify.com/s/files/1/0626/9314/6787/files/electronics_logo_e281c840-3ba2-47ac-8e1b-331ab78d5b40.png?v=1697188531" alt="Logo Tienda" style="width: 100px; height: auto;">
+    <!-- Banner -->
+    <section class="banner-section py-5 mb-4 w-100">
+        <div class="container-fluid px-4">
+            <div class="row align-items-center g-3">
+                <div class="col-md-2 text-center">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1041/1041916.png" alt="Bienvenido" class="img-fluid banner-img">
                 </div>
-                <h3>Catálogo de Productos</h3>
-                <table class="table table-striped">
-                    <thead class="table-dark">
-                        <tr>
-                            <th>Producto</th>
-                            <th>Descripción</th>
-                            <th>Precio</th>
-                            <th>Cantidad</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody id="products-table">
-                        <!-- Productos se generarán aquí desde JavaScript -->
-                    </tbody>
-                </table>
+                <div class="col-md-10">
+                    <h2 class="fw-bold mb-1 text-banner-title">¡Bienvenido a la Tienda de Componentes Electrónicos!</h2>
+                    <p class="lead mb-0 text-banner-desc">Explora nuestro catálogo, agrega productos a tu carrito y disfruta de una experiencia de compra moderna y cómoda.</p>
+                </div>
             </div>
-
+        </div>
+    </section>
+    <!-- Categorías -->
+    <section class="categories-section mb-4">
+        <div class="container">
+            <div class="d-flex flex-wrap gap-3 justify-content-center">
+                <span class="badge rounded-pill bg-primary category-badge"><i class="bi bi-cpu"></i> Procesadores</span>
+                <span class="badge rounded-pill bg-success category-badge"><i class="bi bi-memory"></i> Memorias</span>
+                <span class="badge rounded-pill bg-warning text-dark category-badge"><i class="bi bi-hdd"></i> Almacenamiento</span>
+                <span class="badge rounded-pill bg-danger category-badge"><i class="bi bi-gpu-card"></i> Tarjetas Gráficas</span>
+                <span class="badge rounded-pill bg-info text-dark category-badge"><i class="bi bi-motherboard"></i> Motherboards</span>
+                <span class="badge rounded-pill bg-secondary category-badge"><i class="bi bi-usb-symbol"></i> Accesorios</span>
+            </div>
+        </div>
+    </section>
+    <!-- Main Content -->
+    <div class="container py-4">
+        <div class="row g-4">
+            <!-- Product Inventory Table -->
+            <div class="col-lg-8">
+                <div class="card shadow-lg border-0 rounded-4">
+                    <!-- Card header -->
+                    <div class="card-header bg-gradient-primary text-white rounded-top-4 d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center gap-2">
+                            <img src="https://cdn.shopify.com/s/files/1/0626/9314/6787/files/electronics_logo_e281c840-3ba2-47ac-8e1b-331ab78d5b40.png?v=1697188531" alt="Logo Tienda" style="width: 40px; height: auto;">
+                            <h4 class="mb-0 text-card-title">Catálogo de Productos</h4>
+                        </div>
+                        <button class="btn btn-outline-light btn-sm" data-bs-toggle="modal" data-bs-target="#addProductModal">
+                            <i class="bi bi-plus-circle"></i> Agregar Producto
+                        </button>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="alert alert-info d-flex align-items-center mb-4" role="alert">
+                            <i class="bi bi-info-circle-fill me-2"></i>
+                            <div>
+                                Haz clic en <span class="badge bg-success"><i class="bi bi-cart-plus"></i> Agregar</span> para sumar productos a tu carrito.
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table align-middle table-hover mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Producto</th>
+                                        <th>Descripción</th>
+                                        <th class="text-end">Precio</th>
+                                        <th class="text-center">Stock</th>
+                                        <th class="text-center">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="products-table">
+                                    <!-- Productos se generarán aquí desde JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- Cart Summary Sidebar -->
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-header bg-dark text-white">
-                        <h5>Resumen del Carrito</h5>
+            <div class="col-lg-4">
+                <div class="card shadow-lg border-0 rounded-4 sticky-top" style="top: 90px;">
+                    <div class="card-header bg-gradient-primary text-white rounded-top-4">
+                        <h5 class="mb-0"><i class="bi bi-cart4 me-2"></i>Resumen del Carrito</h5>
                     </div>
                     <div class="card-body" id="cart-summary">
                         <p>Tu carrito está vacío.</p>
                     </div>
-                    <div class="card-footer">
-                        <a href="carrito.html" class="btn btn-primary w-100">Ver Carrito Completo</a>
+                    <div class="card-footer bg-white rounded-bottom-4">
+                        <a href="carrito.html" class="btn btn-primary w-100">
+                            <i class="bi bi-bag-check"></i> Ver Carrito Completo
+                        </a>
                     </div>
+                </div>
+                <div class="mt-4 text-center">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1041/1041916.png" alt="Carrito" class="img-fluid" style="max-width: 80px;">
+                    <p class="text-muted mt-2">¡Compra fácil y rápido!</p>
                 </div>
             </div>
         </div>
@@ -70,9 +133,9 @@
     <!-- Modal for Adding New Product -->
     <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addProductModalLabel">Agregar Nuevo Producto</h5>
+            <div class="modal-content rounded-4">
+                <div class="modal-header bg-gradient-primary text-white rounded-top-4">
+                    <h5 class="modal-title" id="addProductModalLabel"><i class="bi bi-plus-circle"></i> Agregar Nuevo Producto</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -89,14 +152,51 @@
                             <label for="productPrice" class="form-label">Precio</label>
                             <input type="number" class="form-control" id="productPrice" step="0.01" required>
                         </div>
-                        <button type="submit" class="btn btn-primary">Agregar Producto</button>
+                        <button type="submit" class="btn btn-success w-100"><i class="bi bi-plus-circle"></i> Agregar Producto</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+    <!-- Footer -->
+    <footer class="footer-section mt-5 py-4 bg-dark text-white text-center">
+        <div class="container">
+            <div class="mb-2">
+                <i class="bi bi-bag-check-fill fs-4"></i>
+            </div>
+            <div>
+                <small>&copy; 2025 Tienda Electrónica. Todos los derechos reservados.</small>
+            </div>
+        </div>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="./js/catalogo.js"></script>
+    <script>
+    // Modo oscuro/claro
+    const toggle = document.getElementById('darkModeToggle');
+    const icon = document.getElementById('darkModeIcon');
+    const body = document.getElementById('mainBody');
+    let darkMode = localStorage.getItem('darkMode') === 'true';
+
+    function setDarkMode(on) {
+        if (on) {
+            body.classList.add('dark-mode');
+            icon.classList.remove('bi-moon-stars-fill');
+            icon.classList.add('bi-brightness-high-fill');
+        } else {
+            body.classList.remove('dark-mode');
+            icon.classList.remove('bi-brightness-high-fill');
+            icon.classList.add('bi-moon-stars-fill');
+        }
+        localStorage.setItem('darkMode', on);
+    }
+    setDarkMode(darkMode);
+
+    toggle.addEventListener('click', () => {
+        darkMode = !darkMode;
+        setDarkMode(darkMode);
+    });
+    </script>
 </body>
 </html>

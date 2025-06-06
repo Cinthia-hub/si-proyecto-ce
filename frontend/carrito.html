@@ -3,34 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <title>Carrito de Compras</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap 5 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/carrito.css">
 </head>
-<body>
-    <div class="container mt-4">
-        <h2>Carrito de Compras</h2>
-        <div>
-            <span id="userName"></span> | <span id="userEmail"></span>
+<body class="bg-light" id="mainBody" style="font-family: 'Inter', sans-serif;">
+    <!-- Banner/Header -->
+    <section class="banner-section py-4 mb-4 w-100">
+        <div class="container-fluid px-4">
+            <div class="row align-items-center g-3">
+                <div class="col-md-2 text-center">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1041/1041916.png" alt="Carrito" class="img-fluid banner-img">
+                </div>
+                <div class="col-md-10">
+                    <h2 class="fw-bold mb-1 text-banner-title">Tu Carrito de Compras</h2>
+                    <p class="lead mb-0 text-banner-desc">Revisa, edita y finaliza tu compra de manera fácil y segura.</p>
+                </div>
+            </div>
         </div>
-        <table class="table mt-3">
-            <thead>
-                <tr>
-                    <th>Producto</th>
-                    <th>Cantidad</th>
-                    <th>Precio</th>
-                    <th>Subtotal</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody id="carritoBody">
-                <!-- Aquí se cargan los productos del carrito -->
-            </tbody>
-        </table>
-        <div class="mb-3">
-            <strong>Total: <span id="carritoTotal">$0.00</span></strong>
+    </section>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="catalogo.html">
+                <i class="bi bi-bag-check-fill me-2"></i>
+                Tienda Electrónica
+            </a>
+            <div class="ms-auto d-flex align-items-center">
+                <span class="text-white me-3"><i class="bi bi-person-circle"></i> <span id="userName"></span></span>
+                <span class="badge bg-primary" id="userEmail"></span>
+            </div>
         </div>
-        <button class="btn btn-danger" onclick="vaciarCarrito()">Vaciar Carrito</button>
-        <button class="btn btn-success" onclick="finalizarCompra()">Finalizar Compra</button>
+    </nav>
+    <!-- Main Content -->
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="card shadow-lg border-0 rounded-4">
+                    <div class="card-header bg-gradient-primary text-white rounded-top-4 d-flex justify-content-between align-items-center">
+                        <h3 class="mb-0 text-card-title"><i class="bi bi-cart4 me-2"></i>Carrito de Compras</h3>
+                        <a href="catalogo.html" class="btn btn-outline-light btn-sm"><i class="bi bi-arrow-left"></i> Seguir comprando</a>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="table-responsive">
+                            <table class="table align-middle table-hover mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th scope="col">Producto</th>
+                                        <th scope="col" class="text-center">Cantidad</th>
+                                        <th scope="col" class="text-end">Precio</th>
+                                        <th scope="col" class="text-end">Subtotal</th>
+                                        <th scope="col" class="text-center">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="carritoBody">
+                                    <!-- Productos del carrito -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-white d-flex flex-column flex-md-row justify-content-between align-items-center gap-3 rounded-bottom-4">
+                        <div>
+                            <span class="fs-5 fw-bold">Total:</span>
+                            <span class="fs-4 text-success fw-bold" id="carritoTotal">$0.00</span>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-outline-danger btn-lg" onclick="vaciarCarrito()">
+                                <i class="bi bi-trash3"></i> Vaciar Carrito
+                            </button>
+                            <button class="btn btn-success btn-lg" onclick="finalizarCompra()">
+                                <i class="bi bi-bag-check"></i> Finalizar Compra
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div id="carritoVacio" class="alert alert-info mt-4 text-center d-none">
+                    <i class="bi bi-emoji-frown fs-3"></i><br>
+                    ¡Tu carrito está vacío!<br>
+                    <a href="catalogo.html" class="btn btn-link mt-2">Ir al catálogo</a>
+                </div>
+            </div>
+        </div>
     </div>
+    <!-- Footer -->
+    <footer class="footer-section mt-5 py-4 bg-dark text-white text-center">
+        <div class="container">
+            <div class="mb-2">
+                <i class="bi bi-bag-check-fill fs-4"></i>
+            </div>
+            <div>
+                <small>&copy; 2025 Tienda Electrónica. Todos los derechos reservados.</small>
+            </div>
+        </div>
+    </footer>
+    <!-- Bootstrap JS & Custom JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/carrito.js"></script>
 </body>
 </html>
