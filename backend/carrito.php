@@ -54,11 +54,42 @@ if ($action == 'agregar') {
     $stmt->execute();
     echo json_encode(['success' => true]);
 } elseif ($action == 'finalizar') {
-    // Aquí puedes poner la lógica de finalizar compra (vaciar carrito, registrar venta, etc.)
+    // Obtener los productos del carrito
+    $stmt = $conn->prepare("SELECT det_pro_id, det_cantidad FROM detallecarrito WHERE det_car_id = :carritoId");
+    $stmt->bindParam(':carritoId', $carritoId, PDO::PARAM_INT);
+    $stmt->execute();
+    $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // Descontar stock en inventario
+    foreach ($productos as $producto) {
+        $pro_id = $producto['det_pro_id'];
+        $cantidad = $producto['det_cantidad'];
+
+        // Insertar movimiento de inventario negativo (solo si hay suficiente stock)
+        $stmtStock = $conn->prepare("SELECT inv_cantidad FROM inventario WHERE inv_pro_id = :pro_id");
+        $stmtStock->bindParam(':pro_id', $pro_id, PDO::PARAM_INT);
+        $stmtStock->execute();
+        $stock = $stmtStock->fetchColumn();
+
+        if ($stock === false || $stock < $cantidad) {
+            echo json_encode(['success' => false, 'message' => 'Stock insuficiente para uno o más productos.']);
+            exit;
+        }
+
+        // Registrar salida en inventario
+        $stmtSalida = $conn->prepare("UPDATE inventario SET inv_cantidad = inv_cantidad - :cantidad WHERE inv_pro_id = :pro_id");
+        $stmtSalida->bindParam(':cantidad', $cantidad, PDO::PARAM_INT);
+        $stmtSalida->bindParam(':pro_id', $pro_id, PDO::PARAM_INT);
+        $stmtSalida->execute();
+    }
+
+    // Vaciar el carrito
     $stmt = $conn->prepare("DELETE FROM detallecarrito WHERE det_car_id = :carritoId");
     $stmt->bindParam(':carritoId', $carritoId, PDO::PARAM_INT);
     $stmt->execute();
+
     echo json_encode(['success' => true, 'message' => 'Compra realizada con éxito.']);
+
 } elseif ($action == 'listar') {
     $stmt = $conn->prepare("SELECT dc.det_id, p.pro_nombre, p.pro_precio, dc.det_cantidad, dc.det_subtotal FROM detallecarrito dc JOIN producto p ON dc.det_pro_id = p.pro_id WHERE dc.det_car_id = :carritoId");
     $stmt->bindParam(':carritoId', $carritoId, PDO::PARAM_INT);
